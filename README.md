@@ -4,7 +4,7 @@ This is a simple implementation of typed akka actors. It's just a lightweight wr
 ## Code Example
 
 The simple usage example looks like this and you can find it in source code:
-```
+```scala
   sealed trait Command[+Result]
 
   object Command {
