@@ -26,7 +26,6 @@ object Example extends App {
     override def call[B](c: Command[B]): B = c match {
       case Add(x) =>
         acc = acc + x
-        Thread.sleep(100)
         acc
       case Mult(x) =>
         acc = acc * x
@@ -38,7 +37,7 @@ object Example extends App {
   val actorSystem = ActorSystem()
   val calculatorActor = MyTyped.createTypedActor[Command, TypedActorImpl](actorSystem)
   val calculatorActor2 = MyTyped.createTypedActor[Command, TypedActorImpl](actorSystem)
-  implicit val timeout: Timeout = Timeout(100.nanoseconds)
+  implicit val timeout: Timeout = Timeout(10.seconds)
 
   val sumResult = for {
     a <- calculatorActor
